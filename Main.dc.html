@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Komunitas Tambang</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&amp;family=JetBrains+Mono:wght@400;600&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#1B2422;font-family:'Source Sans 3',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#1F4D45}a:hover{color:#163A34}
+h1,h2,h3,h4{font-family:'Archivo',system-ui,sans-serif;margin:0;color:#1B2422;letter-spacing:-0.01em}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.sec{padding:72px 0}
+.alt{background:#F3F5F4}
+.eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#1F4D45;font-weight:600}
+.h2{font-size:30px;line-height:1.18;font-weight:800;margin-top:12px;max-width:760px}
+.lead{color:#5B6865;font-size:18px;margin-top:16px;max-width:660px}
+.muted{color:#5B6865}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:8px;font-weight:700;font-size:16px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;font-family:inherit;line-height:1.2;transition:background .15s,border-color .15s}
+.btn-primary{background:#C8762B;color:#1B2422;border-color:#C8762B}
+.btn-primary:hover{background:#B5691F;border-color:#B5691F;color:#1B2422}
+.btn-outline{border-color:#1F4D45;color:#1F4D45;background:#FFFFFF}
+.btn-outline:hover{background:#F3F5F4;color:#1F4D45}
+.btn-green{background:#1F4D45;color:#FFFFFF;border-color:#1F4D45}
+.btn-green:hover{background:#163A34;color:#FFFFFF}
+.btn-light{border-color:rgba(255,255,255,.7);color:#FFFFFF;background:transparent}
+.btn-light:hover{background:rgba(255,255,255,.1);color:#FFFFFF}
+.card{background:#FFFFFF;border:1px solid #DCE3E0;border-radius:10px;padding:24px;box-shadow:0 1px 2px rgba(27,36,34,.05)}
+.ico{width:44px;height:44px;border-radius:8px;background:#E4EDEA;color:#1F4D45;display:flex;align-items:center;justify-content:center;flex:none}
+.ico svg{width:24px;height:24px}
+.card h3{font-size:19px;line-height:1.3;font-weight:700;margin-top:16px}
+.card p{color:#5B6865;margin-top:8px;font-size:16px}
+.g2,.g3,.g4,.g5{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+.strata{display:flex;flex-direction:column}
+.strata div{width:100%}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:#FFFFFF;border-bottom:1px solid #E1E7E5}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#1B2422;font-family:'Archivo',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.01em}
+.logo:hover{color:#1B2422}
+.logo-mark{width:36px;height:36px;border-radius:8px;background:#1F4D45;display:flex;align-items:center;justify-content:center}
+.nav-links{display:none}
+.nav-links a{text-decoration:none;color:#1B2422;font-weight:600;font-size:16px}
+.nav-links a:hover{color:#1F4D45}
+.nav-cta{display:none}
+.burger{display:flex;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid #DCE3E0;border-radius:8px;background:#FFFFFF;color:#1B2422;cursor:pointer;padding:0}
+.mmenu{border-top:1px solid #E1E7E5;padding:8px 20px 20px;display:flex;flex-direction:column;background:#FFFFFF}
+.mmenu .ml{padding:14px 2px;text-decoration:none;color:#1B2422;font-weight:600;border-bottom:1px solid #EEF2F1}
+.mmenu-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:48px 0 72px;background:#FFFFFF}
+.contour{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-grid{position:relative;display:grid;gap:48px;grid-template-columns:minmax(0,1fr);align-items:center}
+.h1{font-size:38px;line-height:1.08;font-weight:800;letter-spacing:-0.02em}
+.h1 em{font-style:normal;color:#1F4D45;box-shadow:inset 0 -0.18em 0 rgba(200,118,43,.35)}
+.hero-sub{font-size:19px;color:#5B6865;margin-top:20px;max-width:600px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-note{margin-top:14px;font-size:14px;color:#5B6865}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#E4EDEA;color:#1F4D45;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;letter-spacing:.03em}
+.dot{width:7px;height:7px;border-radius:50%;background:#C8762B}
+
+/* phone */
+.phone{width:296px;margin:0 auto;border-radius:38px;background:#1B2422;padding:10px;box-shadow:0 24px 48px -20px rgba(27,36,34,.45)}
+.screen{background:#FFFFFF;border-radius:29px;overflow:hidden}
+.app-head{background:#1F4D45;color:#FFFFFF;padding:22px 18px 18px}
+.app-head h4{color:#FFFFFF;font-size:17px;font-weight:700}
+.bar{height:6px;border-radius:99px;background:#E1E7E5;overflow:hidden}
+.bar span{display:block;height:100%;background:#1F4D45;border-radius:99px}
+.bar.light{background:rgba(255,255,255,.2)}
+.bar.light span{background:#C8762B}
+.mod-row{display:flex;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid #EEF2F1}
+.mod-code{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;flex:none}
+.mc-done{background:#1F4D45;color:#FFFFFF}
+.mc-now{background:#FBEFE3;color:#8A4C14;border:1.5px solid #C8762B}
+.mc-next{background:#F3F5F4;color:#5B6865}
+.float-card{position:absolute;background:#FFFFFF;border:1px solid #DCE3E0;border-radius:10px;padding:12px 14px;box-shadow:0 12px 28px -14px rgba(27,36,34,.35);font-size:13.5px;line-height:1.4;width:220px}
+.hero-vis{position:relative}
+.fc1{left:-8px;bottom:64px;display:none}
+.fc2{right:-8px;top:40px;display:none}
+
+/* logos/stats */
+.logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.logo-ph{height:56px;border-radius:8px;background:#E6EAE8;color:#7A8784;display:flex;align-items:center;justify-content:center;font-size:13px;font-family:'JetBrains Mono',monospace;text-align:center;padding:0 8px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#DCE3E0;border:1px solid #DCE3E0;border-radius:10px;overflow:hidden;margin-top:40px}
+.stat{background:#FFFFFF;padding:24px 20px}
+.stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:600;color:#1F4D45;line-height:1.1}
+.stat span{display:block;color:#5B6865;font-size:15px;margin-top:6px}
+
+/* problems */
+.prob{display:flex;gap:16px;align-items:flex-start}
+.prob p{margin-top:0;color:#1B2422;font-size:17px}
+.prob .tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A4C14;font-weight:600;letter-spacing:.06em}
+
+/* why */
+.why-grid{display:grid;gap:48px;grid-template-columns:minmax(0,1fr);align-items:center;margin-top:40px}
+.why-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid #DCE3E0}
+.why-item:last-child{border-bottom:none}
+.why-item h3{font-size:19px;font-weight:700;line-height:1.3}
+.why-item p{color:#5B6865;margin-top:6px;font-size:16px}
+.num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#C8762B;padding-top:4px;flex:none;width:28px}
+.core-wrap{display:flex;gap:20px;justify-content:center;align-items:stretch}
+.core{width:120px;border-radius:60px/14px;overflow:hidden;border:2px solid #1B2422;display:flex;flex-direction:column}
+.core div{display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600}
+.core-labels{display:flex;flex-direction:column}
+.core-labels div{display:flex;align-items:center;font-size:15px;color:#1B2422;gap:10px}
+.core-labels div span{font-family:'JetBrains Mono',monospace;font-size:12px;color:#5B6865}
+
+/* curriculum */
+.cur-desk{display:none}
+.cur-mob{display:flex;flex-direction:column;gap:10px;margin-top:32px}
+.cur-btn{width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;border:1px solid #DCE3E0;background:#FFFFFF;cursor:pointer;font-family:inherit;text-align:left;color:#1B2422;min-height:56px}
+.cur-btn .mono{font-size:13px;font-weight:600;color:#1F4D45;width:30px;flex:none}
+.cur-btn b{font-size:16px;font-weight:700;flex:1}
+.cur-btn.on{background:#1F4D45;border-color:#1F4D45;color:#FFFFFF}
+.cur-btn.on .mono{color:#F2C08F}
+.cur-detail{background:#FFFFFF;border:1px solid #DCE3E0;border-radius:10px;padding:20px}
+.cur-detail h4{font-size:20px;font-weight:700}
+.topic{display:flex;gap:10px;align-items:flex-start;font-size:16px;color:#1B2422;padding:5px 0}
+.topic svg{flex:none;margin-top:4px}
+.out-box{background:#F3F5F4;border-radius:8px;padding:16px;margin-top:16px}
+.out-box .eyebrow{font-size:11.5px}
+.free{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:#FBEFE3;color:#8A4C14;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;vertical-align:middle}
+.strip{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin-top:40px}
+.strip-line{position:absolute;left:4%;right:4%;top:27px;height:2px;background:#C9D2CF}
+.step-btn{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 4px 14px;background:transparent;border:none;cursor:pointer;font-family:inherit;color:#1B2422;border-radius:8px}
+.step-btn .node{width:56px;height:56px;border-radius:50%;background:#FFFFFF;border:2px solid #C9D2CF;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:#1F4D45;transition:all .15s}
+.step-btn span{font-size:14.5px;font-weight:600;text-align:center;line-height:1.3}
+.step-btn.on .node{background:#1F4D45;border-color:#1F4D45;color:#FFFFFF;box-shadow:0 0 0 6px rgba(31,77,69,.12)}
+.step-btn.on span{color:#1F4D45}
+.step-btn:hover .node{border-color:#1F4D45}
+.panel{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;margin-top:20px;background:#FFFFFF;border:1px solid #DCE3E0;border-radius:10px;padding:32px;box-shadow:0 1px 2px rgba(27,36,34,.05)}
+
+/* how */
+.how{display:grid;gap:28px;grid-template-columns:minmax(0,1fr);margin-top:40px;position:relative}
+.how-step{display:flex;gap:18px;position:relative}
+.how-num{width:52px;height:52px;border-radius:50%;background:#1F4D45;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:17px;flex:none;position:relative;z-index:1}
+.how-step h3{font-size:19px;font-weight:700;line-height:1.3;padding-top:12px}
+.how-step p{color:#5B6865;margin-top:6px;font-size:16px}
+.how-line{position:absolute;left:25px;top:52px;bottom:-28px;width:2px;background:#C9D2CF}
+.claim{margin-top:40px;border-radius:10px;background:#1F4D45;color:#FFFFFF;padding:22px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.claim b{font-family:'Archivo',sans-serif;font-size:21px;line-height:1.3;font-weight:700}
+
+/* preview */
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-top:32px;padding-bottom:4px}
+.tab{flex:none;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #DCE3E0;background:#FFFFFF;font-family:inherit;font-weight:600;font-size:15px;color:#1B2422;cursor:pointer}
+.tab.on{background:#1F4D45;border-color:#1F4D45;color:#FFFFFF}
+.stage{display:flex;gap:40px;align-items:flex-end;justify-content:center;margin-top:40px}
+.laptop{display:none;flex:1;max-width:760px}
+.lap-screen{border:10px solid #1B2422;border-bottom-width:12px;border-radius:14px 14px 0 0;background:#FFFFFF;height:440px;overflow:hidden}
+.lap-base{height:14px;background:#C9D2CF;border-radius:0 0 12px 12px;width:110%;margin-left:-5%}
+.lap-bar{height:36px;border-bottom:1px solid #E1E7E5;display:flex;align-items:center;gap:8px;padding:0 14px;background:#F3F5F4}
+.lap-bar i{width:9px;height:9px;border-radius:50%;background:#C9D2CF;display:block}
+.lap-url{margin-left:12px;flex:1;max-width:320px;height:22px;border-radius:6px;background:#FFFFFF;border:1px solid #DCE3E0;font-family:'JetBrains Mono',monospace;font-size:11px;color:#5B6865;display:flex;align-items:center;padding:0 10px}
+.lap-body{display:flex;height:384px}
+.side{width:170px;background:#F3F5F4;border-right:1px solid #E1E7E5;padding:16px 12px;font-size:13px;flex:none}
+.side div{padding:8px 10px;border-radius:6px;color:#5B6865;font-weight:600}
+.side div.on{background:#FFFFFF;color:#1F4D45;box-shadow:0 1px 2px rgba(27,36,34,.06)}
+.main{flex:1;padding:20px 22px;overflow:hidden;font-size:13.5px;line-height:1.5}
+.mini-card{border:1px solid #E1E7E5;border-radius:8px;padding:12px 14px;background:#FFFFFF}
+.mini-card .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#5B6865;letter-spacing:.06em;text-transform:uppercase}
+.mini-card .v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;color:#1F4D45;margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;background:#E4EDEA;color:#1F4D45;font-size:11px;font-weight:700}
+.video{background:#1F4D45;border-radius:8px;height:170px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.playbtn{width:52px;height:52px;border-radius:50%;background:#C8762B;display:flex;align-items:center;justify-content:center}
+.formula{font-family:'JetBrains Mono',monospace;background:#F3F5F4;border-radius:6px;padding:10px 12px;font-size:12.5px;color:#1B2422;margin-top:10px}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:none}
+.cert{border:2px solid #1F4D45;border-radius:8px;padding:24px;position:relative;background:#FFFFFF;height:100%}
+.cert-inner{border:1px solid #C9D2CF;border-radius:4px;height:100%;padding:22px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center}
+
+/* personas */
+.persona{display:flex;flex-direction:column}
+.persona h3{margin-top:16px}
+.path{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;align-items:center}
+.path span{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;padding:4px 8px;border-radius:6px;background:#F3F5F4;color:#1F4D45}
+.path i{font-style:normal;color:#8E9A97;font-size:12px}
+.path-name{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A4C14;font-weight:600;letter-spacing:.04em;margin-top:18px;text-transform:uppercase}
+.persona.mentor{background:#1F4D45;border-color:#1F4D45;color:#FFFFFF}
+.persona.mentor h3{color:#FFFFFF}
+.persona.mentor p{color:rgba(255,255,255,.82)}
+.persona.mentor .ico{background:rgba(255,255,255,.12);color:#FFFFFF}
+
+/* benefits */
+.ben-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1fr);margin-top:40px;align-items:start}
+.ben{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #E1E7E5;font-size:17px}
+.check{width:28px;height:28px;border-radius:50%;background:#1F4D45;color:#FFFFFF;display:flex;align-items:center;justify-content:center;flex:none}
+.quote{background:#FFFFFF;border:1px solid #DCE3E0;border-radius:10px;padding:28px;position:relative}
+.quote blockquote{margin:0;font-family:'Archivo',sans-serif;font-size:21px;line-height:1.45;font-weight:600;color:#1B2422}
+.ph-label{display:inline-block;padding:3px 10px;border-radius:999px;border:1px dashed #8E9A97;color:#5B6865;font-family:'JetBrains Mono',monospace;font-size:11.5px;margin-bottom:18px}
+
+/* pricing */
+.toggle{display:inline-flex;padding:4px;border-radius:999px;background:#FFFFFF;border:1px solid #DCE3E0;margin-top:28px}
+.toggle button{min-height:40px;padding:0 20px;border-radius:999px;border:none;background:transparent;font-family:inherit;font-weight:700;font-size:15px;color:#5B6865;cursor:pointer}
+.toggle button.on{background:#1F4D45;color:#FFFFFF}
+.price{display:flex;flex-direction:column;position:relative}
+.price h3{margin-top:0;font-size:18px}
+.price .amt{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:600;color:#1B2422;margin-top:14px;line-height:1.1}
+.price .amt small{font-size:15px;color:#5B6865;font-weight:400}
+.price .bill{font-size:14px;color:#5B6865;margin-top:6px;min-height:22px}
+.price ul{margin-top:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.price li{display:flex;gap:10px;font-size:15.5px;line-height:1.45}
+.price li svg{flex:none;margin-top:3px;color:#1F4D45}
+.price .btn{margin-top:24px;width:100%}
+.price.best{border:2px solid #C8762B;box-shadow:0 18px 36px -24px rgba(200,118,43,.6)}
+.best-tag{position:absolute;top:-13px;left:24px;background:#C8762B;color:#1B2422;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.price-foot{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;margin-top:28px;font-size:15px}
+
+/* faq */
+.faq-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1fr);margin-top:8px}
+.acc{border-bottom:1px solid #DCE3E0}
+.acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;background:transparent;border:none;cursor:pointer;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;line-height:1.35;color:#1B2422;text-align:left;min-height:56px}
+.acc-btn svg{flex:none;transition:transform .2s;color:#1F4D45}
+.acc-btn.open svg{transform:rotate(45deg)}
+.acc-body{padding:0 0 22px;color:#5B6865;font-size:16.5px;max-width:720px}
+.disclaimer{margin-top:28px;padding:16px 18px;border-radius:8px;background:#F3F5F4;color:#5B6865;font-size:14.5px;display:flex;gap:12px;align-items:flex-start}
+
+/* cta + footer */
+.cta{position:relative;overflow:hidden;background:#1F4D45;color:#FFFFFF;padding:88px 0;text-align:center}
+.cta h2{color:#FFFFFF;font-size:32px;line-height:1.15;font-weight:800;max-width:760px;margin:0 auto}
+.cta p{color:rgba(255,255,255,.82);margin:18px auto 0;max-width:560px;font-size:18px}
+.cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px;position:relative}
+.foot{background:#16302B;color:rgba(255,255,255,.78);padding:64px 0 32px;font-size:15px}
+.foot-grid{display:grid;gap:36px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.foot h4{color:#FFFFFF;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:14px}
+.foot ul{display:flex;flex-direction:column;gap:10px}
+.foot a{color:rgba(255,255,255,.78);text-decoration:none}
+.foot a:hover{color:#FFFFFF}
+.foot-about{grid-column:1 / -1}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:48px;padding-top:24px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-size:13.5px;color:rgba(255,255,255,.62)}
+
+@media (min-width:640px){
+  .g2,.g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .logos{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .h1{font-size:46px}
+  .fc1,.fc2{display:block}
+}
+@media (min-width:768px){
+  .wrap{padding:0 32px}
+  .sec{padding:96px 0}
+  .h2{font-size:38px}
+  .cta h2{font-size:44px}
+  .how{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+  .how-step{flex-direction:column;gap:6px}
+  .how-step h3{padding-top:14px}
+  .how-line{left:52px;right:-24px;top:25px;bottom:auto;width:auto;height:2px}
+  .foot-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .foot-about{grid-column:span 4}
+  .foot-col{grid-column:span 2}
+}
+@media (min-width:1024px){
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-cta{display:flex;gap:10px}
+  .burger{display:none}
+  .mmenu{display:none}
+  .hero{padding:72px 0 96px}
+  .hero-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .hero-copy{grid-column:1 / span 7}
+  .hero-vis{grid-column:8 / span 5}
+  .h1{font-size:58px}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .logos{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .why-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .why-copy{grid-column:1 / span 6}
+  .why-vis{grid-column:8 / span 5}
+  .cur-desk{display:block}
+  .cur-mob{display:none}
+  .laptop{display:block}
+  .ben-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .ben-list{grid-column:1 / span 7}
+  .ben-quote{grid-column:9 / span 4}
+  .faq-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .faq-head{grid-column:1 / span 4}
+  .faq-list{grid-column:6 / span 7}
+}
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #FFFFFF">
+
+<!-- 1. NAVBAR -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Komunitas Tambang, ke beranda">
+      <span class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 8 12 13l9.5-5L12 3Z"></path><path d="m2.5 12.5 9.5 5 9.5-5" stroke="#F2C08F"></path><path d="m2.5 17 9.5 5 9.5-5"></path></svg>
+      </span>
+      <span>Komunitas Tambang</span>
+    </a>
+    <nav class="nav-links" aria-label="Menu utama">
+      <a href="#kurikulum">Kurikulum</a>
+      <a href="#fitur">Fitur</a>
+      <a href="#cara-kerja">Cara Kerja</a>
+      <a href="#harga">Harga</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#masuk" class="btn btn-outline" style="min-height: 44px">Masuk</a>
+      <a href="#daftar" class="btn btn-primary" style="min-height: 44px">Daftar Gratis</a>
+    </div>
+    <button class="burger" type="button" aria-label="{{ burgerLabel }}" aria-expanded="{{ navExpanded }}" onClick="{{ toggleNav }}">
+      <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </sc-if>
+      <sc-if value="{{ navClosed }}" hint-placeholder-val="{{ true }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </sc-if>
+    </button>
+  </div>
+  <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+    <nav class="mmenu" aria-label="Menu seluler">
+      <a class="ml" href="#kurikulum" onClick="{{ closeNav }}">Kurikulum</a>
+      <a class="ml" href="#fitur" onClick="{{ closeNav }}">Fitur</a>
+      <a class="ml" href="#cara-kerja" onClick="{{ closeNav }}">Cara Kerja</a>
+      <a class="ml" href="#harga" onClick="{{ closeNav }}">Harga</a>
+      <a class="ml" href="#faq" onClick="{{ closeNav }}">FAQ</a>
+      <div class="mmenu-cta">
+        <a href="#masuk" class="btn btn-outline">Masuk</a>
+        <a href="#daftar" class="btn btn-primary">Daftar Gratis</a>
+      </div>
+    </nav>
+  </sc-if>
+</header>
+
+<main id="top">
+
+<!-- 2. HERO -->
+<section class="hero">
+  <svg class="contour" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#1F4D45" stroke-opacity="0.11" aria-hidden="true">
+    <g transform="translate(1080 360)">
+      <path vector-effect="non-scaling-stroke" transform="scale(0.35)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(0.7) rotate(8)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.1) rotate(14)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.55) rotate(20)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(2.05) rotate(26)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(2.6) rotate(31)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(3.2) rotate(36)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(3.9) rotate(40)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(4.7) rotate(44)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+    </g>
+    <g transform="translate(140 690)">
+      <path vector-effect="non-scaling-stroke" transform="scale(0.6) rotate(-20)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.1) rotate(-14)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.7) rotate(-8)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+    </g>
+  </svg>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="chip"><span class="dot"></span>Kurikulum M0–M6 · eksplorasi sampai pelabuhan</span>
+      <h1 class="h1" style="margin-top: 20px">Belajar Tambang dari Hulu ke Hilir, <em>Langsung dari Praktisinya.</em></h1>
+      <p class="hero-sub">Kurikulum terstruktur dari eksplorasi sampai penjualan komoditas, studi kasus lapangan, dan forum tanya-jawab dengan geologis, mine planner, dan trader berpengalaman.</p>
+      <div class="hero-ctas">
+        <a href="#daftar" class="btn btn-primary" style="min-height: 52px; padding: 0 26px; font-size: 17px">Mulai Belajar Gratis</a>
+        <a href="#kurikulum" class="btn btn-outline" style="min-height: 52px; padding: 0 26px; font-size: 17px">Lihat Kurikulum</a>
+      </div>
+      <p class="hero-note">Modul pengantar gratis, tanpa kartu kredit.</p>
+    </div>
+    <div class="hero-vis">
+      <div class="phone" role="img" aria-label="Contoh tampilan aplikasi: learning path Jalur Karier Teknis dengan progres modul">
+        <div class="screen">
+          <div class="app-head">
+            <div class="mono" style="font-size: 11px; letter-spacing: .08em; opacity: .75">LEARNING PATH KAMU</div>
+            <h4 style="margin-top: 6px">Jalur Karier Teknis</h4>
+            <div style="display: flex; justify-content: space-between; font-size: 12.5px; margin-top: 14px; opacity: .9"><span>Progres jalur</span><span class="mono">42%</span></div>
+            <div class="bar light" style="margin-top: 6px"><span style="width: 42%"></span></div>
+          </div>
+          <div style="padding: 14px 16px 6px; font-size: 12px; color: #5B6865" class="mono">5 MODUL · URUTAN HULU KE HILIR</div>
+          <div class="mod-row">
+            <div class="mod-code mc-done">M0</div>
+            <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 14px">Pengantar Industri</div><div style="font-size: 12px; color: #5B6865">Selesai · 8 pelajaran</div></div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F4D45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>
+          </div>
+          <div class="mod-row" style="background: #FDF8F2">
+            <div class="mod-code mc-now">M1</div>
+            <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 14px">Eksplorasi</div><div style="font-size: 12px; color: #8A4C14">Lanjut: Logging inti bor</div><div class="bar" style="margin-top: 6px"><span style="width: 58%; background: #C8762B"></span></div></div>
+          </div>
+          <div class="mod-row">
+            <div class="mod-code mc-next">M3</div>
+            <div style="flex: 1"><div style="font-weight: 700; font-size: 14px">Penambangan</div><div style="font-size: 12px; color: #5B6865">Termasuk: stripping ratio</div></div>
+          </div>
+          <div class="mod-row">
+            <div class="mod-code mc-next">M4</div>
+            <div style="flex: 1"><div style="font-weight: 700; font-size: 14px">Pengolahan &amp; Pemurnian</div><div style="font-size: 12px; color: #5B6865">Smelter, washing plant</div></div>
+          </div>
+          <div class="mod-row" style="border-bottom: none">
+            <div class="mod-code mc-next">M5</div>
+            <div style="flex: 1"><div style="font-weight: 700; font-size: 14px">Lingkungan &amp; Reklamasi</div><div style="font-size: 12px; color: #5B6865">Pascatambang, ESG</div></div>
+          </div>
+          <div style="padding: 12px 16px 18px">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border-radius: 8px; background: #1F4D45; color: #FFFFFF; font-weight: 700; font-size: 14px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>Lanjutkan pelajaran
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-card fc1" aria-hidden="true">
+        <div style="display: flex; gap: 8px; align-items: center"><span class="badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Praktisi terverifikasi</span></div>
+        <div style="margin-top: 8px; font-weight: 600">Pertanyaanmu dijawab mine planner</div>
+        <div style="color: #5B6865; font-size: 12.5px; margin-top: 2px">Forum · Penambangan</div>
+      </div>
+      <div class="float-card fc2" aria-hidden="true" style="width: 190px">
+        <div class="mono" style="font-size: 11px; color: #5B6865; letter-spacing: .06em">MODE OFFLINE</div>
+        <div style="margin-top: 4px; font-weight: 600">3 pelajaran tersimpan</div>
+        <div style="color: #5B6865; font-size: 12.5px">Tonton di site tanpa sinyal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strata" aria-hidden="true">
+  <div style="height: 6px; background: #1F4D45"></div>
+  <div style="height: 3px; background: #C8762B"></div>
+  <div style="height: 8px; background: #8FA39C"></div>
+  <div style="height: 2px; background: #FFFFFF"></div>
+  <div style="height: 5px; background: #D9C9AC"></div>
+</div>
+
+<!-- 3. TRUSTED BY / STATS -->
+<section class="alt" style="padding: 56px 0">
+  <div class="wrap">
+    <p class="mono" style="text-align: center; font-size: 12.5px; letter-spacing: .08em; color: #5B6865; margin-bottom: 20px">DIBANGUN BERSAMA KAMPUS DAN PELAKU INDUSTRI</p>
+    <div class="logos" aria-label="Tempat logo mitra">
+      <div class="logo-ph">Logo Mitra Kampus</div>
+      <div class="logo-ph">Logo Mitra Perusahaan</div>
+      <div class="logo-ph">Logo Mitra Kampus</div>
+      <div class="logo-ph">Logo Mitra Perusahaan</div>
+      <div class="logo-ph">Logo Mitra Kampus</div>
+      <div class="logo-ph">Logo Mitra Perusahaan</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>7</b><span>modul hulu–hilir</span></div>
+      <div class="stat"><b>3</b><span>level belajar</span></div>
+      <div class="stat"><b>20+</b><span>mentor pendiri</span></div>
+      <div class="stat"><b>2x</b><span>webinar per bulan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MASALAH -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Masalah yang sering terjadi</p>
+    <h2 class="h2">Belajar tambang itu susah kalau jalurnya terpecah-pecah.</h2>
+    <p class="lead">Kampus kuat di teori, pelatihan sertifikasi mahal, dan konten gratis sulit dipastikan kebenarannya. Hasilnya, banyak orang tahu potongan-potongannya, tapi tidak melihat gambaran utuhnya.</p>
+    <div class="g3" style="margin-top: 40px">
+      <div class="card prob">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="6" width="7" height="7" rx="1.5"></rect><rect x="6" y="14" width="7" height="7" rx="1.5"></rect></svg></div>
+        <div><div class="tag">01 · TERSEBAR</div><p style="margin-top: 6px">Materi tersebar, tidak ada yang menjelaskan alurnya dari awal sampai akhir.</p></div>
+      </div>
+      <div class="card prob">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path><path d="M10 13h6M10 17h4"></path></svg></div>
+        <div><div class="tag">02 · TERLALU TEORITIS</div><p style="margin-top: 6px">Jarang ada contoh RKAB, kontrak jual beli, atau perhitungan nyata.</p></div>
+      </div>
+      <div class="card prob">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><path d="M17 6.5a2.5 2.5 0 1 1 3 2.4V10"></path><path d="M20 13.5h.01"></path></svg></div>
+        <div><div class="tag">03 · SULIT BERTANYA</div><p style="margin-top: 6px">Sulit bertanya ke praktisi yang benar-benar berpengalaman.</p></div>
+      </div>
+      <div class="card prob">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8"></path><path d="M4 4v4h4"></path><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16"></path><path d="M20 20v-4h-4"></path></svg></div>
+        <div><div class="tag">04 · CEPAT BERUBAH</div><p style="margin-top: 6px">Regulasi dan harga acuan cepat berubah, pemula sering tertinggal.</p></div>
+      </div>
+      <div class="card prob">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"></circle><circle cx="5" cy="18" r="2.5"></circle><circle cx="19" cy="18" r="2.5"></circle><path d="M10.8 7.2 6.2 15.8M13.2 7.2l4.6 8.6M7.5 18h9"></path></svg></div>
+        <div><div class="tag">05 · JARINGAN TERBATAS</div><p style="margin-top: 6px">Jaringan terbatas untuk karier, kemitraan, atau peluang bisnis.</p></div>
+      </div>
+      <div class="card" style="background: #1F4D45; border-color: #1F4D45; display: flex; flex-direction: column; justify-content: center">
+        <p style="color: #FFFFFF; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.35; margin-top: 0">Komunitas Tambang menyatukan semuanya dalam satu jalur belajar.</p>
+        <a href="#kenapa" style="color: #F2C08F; font-weight: 700; margin-top: 14px; text-decoration: none">Lihat bedanya →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. KENAPA -->
+<section class="sec alt" id="kenapa">
+  <div class="wrap">
+    <div class="why-grid" style="margin-top: 0">
+      <div class="why-copy">
+        <p class="eyebrow">Kenapa Komunitas Tambang</p>
+        <h2 class="h2">Satu inti bor, tujuh lapisan ilmu. Dibaca berurutan, bukan acak.</h2>
+        <div style="margin-top: 28px">
+          <div class="why-item">
+            <span class="num">01</span>
+            <div><h3>Kurikulum end-to-end</h3><p>Mengikuti rantai nilai tambang: eksplorasi, perizinan, penambangan, pengolahan, reklamasi, sampai logistik dan penjualan.</p></div>
+          </div>
+          <div class="why-item">
+            <span class="num">02</span>
+            <div><h3>Diajar dan direview praktisi</h3><p>Setiap materi disusun dan diperiksa praktisi lapangan, lengkap dengan studi kasus, bukan sekadar teori.</p></div>
+          </div>
+          <div class="why-item">
+            <span class="num">03</span>
+            <div><h3>Konteks Indonesia</h3><p>Langsung membahas aturan dan istilah yang kamu temui di lapangan: UU Minerba, IUP, RKAB, HBA/HMA, dan DMO (kewajiban pasok dalam negeri).</p></div>
+          </div>
+          <div class="why-item">
+            <span class="num">04</span>
+            <div><h3>Regulasi selalu diperbarui</h3><p>Materi regulasi ditinjau ulang setiap 6 bulan, dan setiap pelajaran mencantumkan tanggal pembaruan terakhir.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-vis">
+        <div class="core-wrap" role="img" aria-label="Ilustrasi inti bor dengan tujuh lapisan, masing-masing satu modul dari M0 sampai M6">
+          <div class="core">
+            <div style="height: 44px; background: #E8E2D2; color: #1B2422">M0</div>
+            <div style="height: 64px; background: #C9B48A; color: #1B2422">M1</div>
+            <div style="height: 50px; background: #8FA39C; color: #1B2422">M2</div>
+            <div style="height: 72px; background: #5E7D73; color: #FFFFFF">M3</div>
+            <div style="height: 56px; background: #C8762B; color: #1B2422">M4</div>
+            <div style="height: 48px; background: #3B6158; color: #FFFFFF">M5</div>
+            <div style="height: 62px; background: #1F4D45; color: #FFFFFF">M6</div>
+          </div>
+          <div class="core-labels">
+            <div style="height: 44px"><span>M0</span>Pengantar</div>
+            <div style="height: 64px"><span>M1</span>Eksplorasi</div>
+            <div style="height: 50px"><span>M2</span>Perizinan &amp; Regulasi</div>
+            <div style="height: 72px"><span>M3</span>Penambangan</div>
+            <div style="height: 56px"><span>M4</span>Pengolahan &amp; Pemurnian</div>
+            <div style="height: 48px"><span>M5</span>Lingkungan &amp; Reklamasi</div>
+            <div style="height: 62px"><span>M6</span>Logistik &amp; Penjualan</div>
+          </div>
+        </div>
+        <p class="mono" style="text-align: center; font-size: 12px; color: #5B6865; margin-top: 18px; letter-spacing: .04em">HULU ↓ HILIR</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FITUR -->
+<section class="sec" id="fitur">
+  <div class="wrap">
+    <p class="eyebrow">Fitur unggulan</p>
+    <h2 class="h2">Dibuat untuk cara belajar orang tambang: singkat, praktis, dan tetap jalan meski sinyal lemah.</h2>
+    <div class="g3" style="margin-top: 40px">
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg></div>
+        <h3>Learning path personal</h3>
+        <p>Kuis penempatan singkat menentukan level dan urutan modul yang paling pas untuk peran dan minat komoditasmu.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m10 9 5 3-5 3z"></path></svg></div>
+        <h3>Materi padat dan nyata</h3>
+        <p>Video 5–12 menit, ringkasan, infografis, dan contoh dokumen nyata yang sudah disanitasi.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M4 19.5h16"></path></svg></div>
+        <h3>Mode offline</h3>
+        <p>Unduh materi untuk belajar di site dengan sinyal lemah. Progres tersinkron otomatis saat kembali online.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path><path d="m9 10.5 2 2 4-4"></path></svg></div>
+        <h3>Forum dengan praktisi terverifikasi</h3>
+        <p>Tanya apa saja, dan kenali jawaban dari mentor yang sudah dikurasi lewat badge praktisi.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2"></circle><path d="M8.5 15.5a5 5 0 0 1 0-7M15.5 8.5a5 5 0 0 1 0 7M5.6 18.4a9 9 0 0 1 0-12.8M18.4 5.6a9 9 0 0 1 0 12.8"></path></svg></div>
+        <h3>Webinar praktisi</h3>
+        <p>Sesi live dua kali sebulan dengan tanya-jawab langsung, plus rekamannya untuk ditonton ulang.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M7 8h10M7 11.5h6"></path><circle cx="16.5" cy="16.5" r="2.5"></circle><path d="m15 18.7-1 3 2.5-1 2.5 1-1-3"></path></svg></div>
+        <h3>Sertifikat digital</h3>
+        <p>Lulus ujian akhir, dapatkan sertifikat dengan kode verifikasi yang bisa dicek perekrut.</p>
+      </div>
+    </div>
+
+    <!-- Kurikulum -->
+    <div id="kurikulum" style="margin-top: 96px; scroll-margin-top: 90px">
+      <p class="eyebrow">Kurikulum hulu ke hilir</p>
+      <h2 class="h2">Tujuh modul, urut seperti perjalanan komoditas dari dalam bumi sampai ke kapal.</h2>
+      <p class="lead">Setiap modul punya 3 level: Dasar, Menengah, dan Lanjut. Arahkan kursor atau klik sebuah modul untuk melihat isinya.</p>
+
+      <div class="cur-desk">
+        <div class="strip" role="tablist" aria-label="Modul kurikulum">
+          <div class="strip-line" aria-hidden="true"></div>
+          <sc-for list="{{ modules }}" as="m" hint-placeholder-count="7">
+            <button type="button" role="tab" aria-selected="{{ m.ariaSel }}" class="step-btn {{ m.cls }}" onClick="{{ m.pick }}" onMouseEnter="{{ m.pick }}">
+              <span class="node">{{ m.code }}</span>
+              <span>{{ m.name }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div class="panel" role="tabpanel">
+          <div style="grid-column: span 7">
+            <div class="mono" style="font-size: 13px; color: #8A4C14; font-weight: 600; letter-spacing: .06em">{{ cur.code }} · {{ cur.levels }}</div>
+            <h3 style="font-size: 26px; font-weight: 800; margin-top: 8px">{{ cur.full }}<sc-if value="{{ cur.isFree }}" hint-placeholder-val="{{ false }}"><span class="free">GRATIS</span></sc-if></h3>
+            <div class="eyebrow" style="margin-top: 22px; font-size: 12px">Topik utama</div>
+            <ul style="margin-top: 8px">
+              <sc-for list="{{ cur.topics }}" as="t" hint-placeholder-count="5">
+                <li class="topic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4D45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg><span>{{ t }}</span></li>
+              </sc-for>
+            </ul>
+          </div>
+          <div style="grid-column: span 5">
+            <div class="out-box" style="margin-top: 0">
+              <div class="eyebrow">Praktik dan studi kasus</div>
+              <p style="margin-top: 8px; font-size: 16px">{{ cur.practice }}</p>
+            </div>
+            <div class="out-box" style="background: #1F4D45; color: #FFFFFF">
+              <div class="eyebrow" style="color: #F2C08F">Output peserta</div>
+              <p style="margin-top: 8px; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 19px; line-height: 1.35">{{ cur.output }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cur-mob">
+        <sc-for list="{{ modules }}" as="m" hint-placeholder-count="7">
+          <div>
+            <button type="button" class="cur-btn {{ m.cls }}" aria-expanded="{{ m.ariaSel }}" onClick="{{ m.pick }}">
+              <span class="mono">{{ m.code }}</span>
+              <b>{{ m.name }}</b>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <sc-if value="{{ m.selected }}" hint-placeholder-val="{{ false }}">
+              <div class="cur-detail" style="margin-top: 8px">
+                <div class="mono" style="font-size: 12px; color: #8A4C14; font-weight: 600">{{ m.levels }}</div>
+                <ul style="margin-top: 8px">
+                  <sc-for list="{{ m.topics }}" as="t" hint-placeholder-count="5">
+                    <li class="topic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F4D45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg><span>{{ t }}</span></li>
+                  </sc-for>
+                </ul>
+                <div class="out-box">
+                  <div class="eyebrow">Output peserta</div>
+                  <p style="margin-top: 6px; font-weight: 700">{{ m.output }}</p>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CARA KERJA -->
+<section class="sec alt" id="cara-kerja" style="scroll-margin-top: 68px">
+  <div class="wrap">
+    <p class="eyebrow">Cara kerja</p>
+    <h2 class="h2">Empat langkah dari daftar sampai sertifikat.</h2>
+    <div class="how">
+      <div class="how-step">
+        <div class="how-line" aria-hidden="true"></div>
+        <div class="how-num">01</div>
+        <div><h3>Daftar dan pilih peran</h3><p>Pilih peranmu dan minat komoditas, misalnya nikel, batu bara, emas, atau timah.</p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-line" aria-hidden="true"></div>
+        <div class="how-num">02</div>
+        <div><h3>Kuis penempatan</h3><p>Jawab beberapa pertanyaan singkat, lalu dapatkan learning path yang sesuai level kamu.</p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-line" aria-hidden="true"></div>
+        <div class="how-num">03</div>
+        <div><h3>Belajar dan bertanya</h3><p>Tonton materi, kerjakan kuis tiap pelajaran, dan tanya di forum kalau ada yang belum jelas.</p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div><h3>Lulus dan bertumbuh</h3><p>Lulus ujian, raih sertifikat, dan kembangkan jaringan dengan praktisi dan sesama anggota.</p></div>
+      </div>
+    </div>
+    <div class="claim">
+      <b>Dapatkan learning path pertamamu dalam 10 menit.</b>
+      <a href="#daftar" class="btn btn-primary">Mulai Kuis Penempatan</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PREVIEW -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Lihat aplikasinya</p>
+    <h2 class="h2">Seperti ini rasanya belajar di Komunitas Tambang.</h2>
+    <div class="tabs" role="tablist" aria-label="Pratinjau aplikasi">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+        <button type="button" role="tab" aria-selected="{{ t.ariaSel }}" class="tab {{ t.cls }}" onClick="{{ t.pick }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+
+    <div class="stage" role="tabpanel">
+      <!-- LAPTOP -->
+      <div class="laptop" aria-hidden="true">
+        <div class="lap-screen">
+          <div class="lap-bar"><i></i><i></i><i></i><div class="lap-url">komunitastambang.id/belajar</div></div>
+          <div class="lap-body">
+            <div class="side">
+              <div style="font-family: 'Archivo', sans-serif; color: #1B2422; font-weight: 800; padding-bottom: 14px">Komunitas Tambang</div>
+              <div class="{{ tabCls.0 }}">Dashboard</div>
+              <div class="{{ tabCls.1 }}">Kurikulum</div>
+              <div class="{{ tabCls.2 }}">Forum</div>
+              <div>Webinar</div>
+              <div class="{{ tabCls.3 }}">Sertifikat</div>
+            </div>
+            <div class="main">
+              <sc-if value="{{ tab0 }}" hint-placeholder-val="{{ true }}">
+                <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 20px">Selamat datang kembali, Raka</div>
+                <div style="color: #5B6865">Jalur Karier Teknis · Level Dasar</div>
+                <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px">
+                  <div class="mini-card"><div class="k">Progres jalur</div><div class="v">42%</div><div class="bar" style="margin-top: 6px"><span style="width: 42%"></span></div></div>
+                  <div class="mini-card"><div class="k">Pelajaran selesai</div><div class="v">19</div><div style="font-size: 11.5px; color: #5B6865">dari 46 pelajaran</div></div>
+                  <div class="mini-card"><div class="k">Rata-rata kuis</div><div class="v">86</div><div style="font-size: 11.5px; color: #5B6865">nilai dari 100</div></div>
+                </div>
+                <div class="mini-card" style="margin-top: 12px; display: flex; gap: 14px; align-items: center; background: #FDF8F2; border-color: #F0D9C0">
+                  <div class="mod-code mc-now">M1</div>
+                  <div style="flex: 1"><div style="font-weight: 700">Lanjutkan: Logging inti bor</div><div style="color: #5B6865; font-size: 12.5px">Eksplorasi · pelajaran 7 dari 12 · 9 menit</div></div>
+                  <div style="background: #C8762B; color: #1B2422; font-weight: 700; padding: 7px 14px; border-radius: 6px; font-size: 12.5px">Lanjut</div>
+                </div>
+                <div style="font-weight: 700; margin-top: 16px">Modul di jalurmu</div>
+                <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 8px">
+                  <div class="mini-card" style="padding: 10px"><div class="mono" style="font-weight: 600; color: #1F4D45">M0</div><div class="bar" style="margin-top: 8px"><span style="width: 100%"></span></div></div>
+                  <div class="mini-card" style="padding: 10px"><div class="mono" style="font-weight: 600; color: #1F4D45">M1</div><div class="bar" style="margin-top: 8px"><span style="width: 58%; background: #C8762B"></span></div></div>
+                  <div class="mini-card" style="padding: 10px"><div class="mono" style="font-weight: 600; color: #5B6865">M3</div><div class="bar" style="margin-top: 8px"><span style="width: 0%"></span></div></div>
+                  <div class="mini-card" style="padding: 10px"><div class="mono" style="font-weight: 600; color: #5B6865">M4</div><div class="bar" style="margin-top: 8px"><span style="width: 0%"></span></div></div>
+                  <div class="mini-card" style="padding: 10px"><div class="mono" style="font-weight: 600; color: #5B6865">M5</div><div class="bar" style="margin-top: 8px"><span style="width: 0%"></span></div></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ tab1 }}" hint-placeholder-val="{{ false }}">
+                <div class="mono" style="font-size: 11px; color: #8A4C14; font-weight: 600">M3 PENAMBANGAN · PELAJARAN 4</div>
+                <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; margin-top: 2px">Menghitung Stripping Ratio</div>
+                <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-top: 12px">
+                  <div>
+                    <div class="video"><div class="playbtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#1B2422"><path d="M8 5v14l11-7z"></path></svg></div><div class="mono" style="position: absolute; left: 12px; bottom: 10px; color: #FFFFFF; font-size: 11px">04:12 / 09:30</div></div>
+                    <div style="font-size: 12.5px; color: #5B6865; margin-top: 8px">Oleh mine planner, 20+ tahun di tambang batu bara</div>
+                  </div>
+                  <div>
+                    <div style="font-weight: 700">Ringkasan</div>
+                    <div style="color: #5B6865">Stripping ratio (SR) membandingkan volume tanah penutup yang dikupas dengan batu bara yang didapat.</div>
+                    <div class="formula">SR = overburden (bcm) ÷ batu bara (ton)</div>
+                    <div class="formula">1.200.000 bcm ÷ 200.000 ton = <b>6 : 1</b></div>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ tab2 }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; gap: 8px"><span class="badge">M2 Perizinan</span><span class="badge" style="background: #F3F5F4; color: #5B6865">Pemula</span></div>
+                <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 19px; margin-top: 8px">Beda IUP dan IUPK untuk pemula?</div>
+                <div style="display: flex; gap: 10px; margin-top: 8px; align-items: center"><div class="avatar" style="background: #E4EDEA; color: #1F4D45">DW</div><div style="font-size: 12.5px; color: #5B6865">Dewi · fresh graduate geologi · 2 jam lalu</div></div>
+                <div style="margin-top: 8px">Saya sering baca dua istilah ini di lowongan dan berita. Bedanya di mana, dan kenapa penting buat yang mau kerja di eksplorasi?</div>
+                <div class="mini-card" style="margin-top: 14px; border-color: #1F4D45; border-width: 1.5px">
+                  <div style="display: flex; gap: 10px; align-items: center"><div class="avatar" style="background: #1F4D45; color: #FFFFFF">HS</div><div><div style="font-weight: 700">Hendra S.</div><span class="badge">Praktisi terverifikasi · Legal &amp; Perizinan</span></div><div style="margin-left: auto; font-size: 11.5px; color: #1F4D45; font-weight: 700">Jawaban terbaik</div></div>
+                  <div style="margin-top: 8px">Singkatnya: IUP diterbitkan untuk wilayah WIUP, sedangkan IUPK untuk WIUPK yang berasal dari wilayah pencadangan negara, dengan prioritas penawaran ke BUMN dan BUMD. Alur lengkapnya ada di Modul 2, pelajaran 3.</div>
+                  <div style="margin-top: 8px; font-size: 12px; color: #5B6865">48 terbantu · 6 balasan</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ tab3 }}" hint-placeholder-val="{{ false }}">
+                <div class="cert">
+                  <div class="cert-inner">
+                    <div class="mono" style="font-size: 11px; letter-spacing: .12em; color: #8A4C14; font-weight: 600">SERTIFIKAT PENYELESAIAN</div>
+                    <div style="font-size: 12.5px; color: #5B6865; margin-top: 10px">Diberikan kepada</div>
+                    <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 26px; color: #1F4D45">Raka Pratama</div>
+                    <div style="margin-top: 6px">telah menyelesaikan <b>Jalur Karier Teknis</b> (M0, M1, M3, M4, M5) dan lulus ujian akhir.</div>
+                    <div class="strata" style="width: 120px; margin-top: 14px"><div style="height: 3px; background: #1F4D45"></div><div style="height: 2px; background: #C8762B"></div><div style="height: 3px; background: #8FA39C"></div></div>
+                    <div class="mono" style="font-size: 11.5px; margin-top: 12px; color: #1B2422">Kode verifikasi: KT-2026-KT5-48XQ</div>
+                    <div style="font-size: 11px; color: #5B6865; margin-top: 4px">Sertifikat platform Komunitas Tambang, bukan sertifikasi kompetensi resmi.</div>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+        <div class="lap-base"></div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="phone" style="width: 260px; flex: none" aria-hidden="true">
+        <div class="screen" style="min-height: 500px">
+          <sc-if value="{{ tab0 }}" hint-placeholder-val="{{ true }}">
+            <div class="app-head"><div class="mono" style="font-size: 10.5px; opacity: .75">DASHBOARD</div><h4 style="margin-top: 4px">Halo, Raka</h4><div class="bar light" style="margin-top: 12px"><span style="width: 42%"></span></div><div style="font-size: 12px; margin-top: 6px; opacity: .85">42% Jalur Karier Teknis</div></div>
+            <div style="padding: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 13px">
+              <div class="mini-card"><div class="k">Lanjutkan</div><div style="font-weight: 700; margin-top: 2px">Logging inti bor</div><div style="color: #5B6865; font-size: 12px">M1 · 9 menit</div></div>
+              <div class="mini-card"><div class="k">Webinar berikutnya</div><div style="font-weight: 700; margin-top: 2px">Membaca data bor untuk pemula</div><div style="color: #5B6865; font-size: 12px">Kamis · 19.30 WIB</div></div>
+              <div class="mini-card"><div class="k">Forum</div><div style="font-weight: 700; margin-top: 2px">2 jawaban baru untukmu</div></div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ tab1 }}" hint-placeholder-val="{{ false }}">
+            <div class="video" style="border-radius: 0; height: 150px"><div class="playbtn" style="width: 44px; height: 44px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1B2422"><path d="M8 5v14l11-7z"></path></svg></div></div>
+            <div style="padding: 14px; font-size: 13px">
+              <div class="mono" style="font-size: 10.5px; color: #8A4C14; font-weight: 600">M3 · PELAJARAN 4</div>
+              <div style="font-weight: 800; font-family: 'Archivo', sans-serif; font-size: 16px">Menghitung Stripping Ratio</div>
+              <div class="mini-card" style="margin-top: 12px"><div class="k">Kuis · soal 2 dari 5</div><div style="font-weight: 600; margin-top: 4px">Overburden 900.000 bcm, batu bara 150.000 ton. Berapa SR-nya?</div>
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px">
+                  <div style="border: 1px solid #DCE3E0; border-radius: 6px; padding: 7px 10px">4 : 1</div>
+                  <div style="border: 1.5px solid #1F4D45; background: #E4EDEA; border-radius: 6px; padding: 7px 10px; font-weight: 700">6 : 1</div>
+                  <div style="border: 1px solid #DCE3E0; border-radius: 6px; padding: 7px 10px">8 : 1</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; margin-top: 12px; color: #1F4D45; font-weight: 700; font-size: 12.5px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M4 19.5h16"></path></svg>Tersimpan untuk offline</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ tab2 }}" hint-placeholder-val="{{ false }}">
+            <div class="app-head"><div class="mono" style="font-size: 10.5px; opacity: .75">FORUM</div><h4 style="margin-top: 4px">Tanya praktisi</h4></div>
+            <div style="padding: 12px 14px; font-size: 13px; display: flex; flex-direction: column; gap: 10px">
+              <div class="mini-card"><div style="font-weight: 700">Beda IUP dan IUPK untuk pemula?</div><div style="margin-top: 6px"><span class="badge">Dijawab praktisi</span></div><div style="color: #5B6865; font-size: 12px; margin-top: 4px">M2 · 6 balasan</div></div>
+              <div class="mini-card"><div style="font-weight: 700">Cara cepat paham HBA untuk trader baru?</div><div style="color: #5B6865; font-size: 12px; margin-top: 4px">M6 · 3 balasan</div></div>
+              <div class="mini-card"><div style="font-weight: 700">Tips magang pertama di site nikel</div><div style="color: #5B6865; font-size: 12px; margin-top: 4px">Karier · 11 balasan</div></div>
+              <div style="height: 40px; border-radius: 8px; background: #C8762B; color: #1B2422; font-weight: 700; display: flex; align-items: center; justify-content: center">Ajukan pertanyaan</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ tab3 }}" hint-placeholder-val="{{ false }}">
+            <div class="app-head"><div class="mono" style="font-size: 10.5px; opacity: .75">VERIFIKASI SERTIFIKAT</div><h4 style="margin-top: 4px">Sertifikat valid</h4></div>
+            <div style="padding: 16px 14px; font-size: 13px">
+              <div style="width: 56px; height: 56px; border-radius: 50%; background: #E4EDEA; display: flex; align-items: center; justify-content: center; margin: 4px auto 0"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1F4D45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></div>
+              <div class="mini-card" style="margin-top: 14px"><div class="k">Nama</div><div style="font-weight: 700">Raka Pratama</div></div>
+              <div class="mini-card" style="margin-top: 8px"><div class="k">Jalur</div><div style="font-weight: 700">Karier Teknis</div></div>
+              <div class="mini-card" style="margin-top: 8px"><div class="k">Kode</div><div class="mono" style="font-weight: 600">KT-2026-KT5-48XQ</div></div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="text-align: center; font-size: 14px; margin-top: 20px">Tampilan dan data di atas adalah contoh ilustrasi.</p>
+  </div>
+</section>
+
+<div class="strata" aria-hidden="true">
+  <div style="height: 5px; background: #D9C9AC"></div>
+  <div style="height: 2px; background: #FFFFFF"></div>
+  <div style="height: 8px; background: #8FA39C"></div>
+  <div style="height: 3px; background: #C8762B"></div>
+  <div style="height: 6px; background: #1F4D45"></div>
+</div>
+
+<!-- 9. USE CASE -->
+<section class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow">Siapa yang cocok</p>
+    <h2 class="h2">Mulai dari mana pun posisimu di industri tambang.</h2>
+    <div class="g3" style="margin-top: 40px">
+      <div class="card persona">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5-10 4.5z"></path><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"></path><path d="M22 9.5v5"></path></svg></div>
+        <h3>Mahasiswa dan fresh graduate</h3>
+        <p>Pahami cara kerja tambang nyata sebelum magang, dan siapkan diri untuk tes teknis dan wawancara.</p>
+        <div class="path-name">Jalur Karier Teknis</div>
+        <div class="path"><span>M0</span><i>→</i><span>M1</span><i>→</i><span>M3</span><i>→</i><span>M4</span><i>→</i><span>M5</span></div>
+      </div>
+      <div class="card persona">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18"></path><path d="M5 17v-3a7 7 0 0 1 14 0v3"></path><path d="M10 7.3V5h4v2.3"></path><path d="M4 20h16"></path></svg></div>
+        <h3>Pekerja tambang</h3>
+        <p>Operator, foreman, dan staf yang ingin naik ke supervisor: perencanaan produksi, regulasi, dan K3.</p>
+        <div class="path-name">Jalur Supervisor Lapangan</div>
+        <div class="path"><span>M0</span><i>→</i><span>M3</span><i>→</i><span>M2</span><i>→</i><span>M5</span></div>
+      </div>
+      <div class="card persona">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4"></path><path d="M4 20h16"></path><path d="m7 15 4-4 3 3 5-6"></path></svg></div>
+        <h3>Investor pemula</h3>
+        <p>Belajar membaca laporan cadangan, harga acuan, dan siklus komoditas sebelum mengambil keputusan.</p>
+        <div class="path-name">Jalur Bisnis dan Investasi</div>
+        <div class="path"><span>M0</span><i>→</i><span>M2</span><i>→</i><span>M6</span><i>→</i><span>M1 Dasar</span></div>
+      </div>
+      <div class="card persona">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V5h6v2M3 12.5h18"></path></svg></div>
+        <h3>Pengusaha lokal</h3>
+        <p>Kontraktor, pemasok, dan trader yang ingin paham perizinan, kemitraan dengan perusahaan tambang, dan kontrak jual beli.</p>
+        <div class="path-name">Fokus bisnis</div>
+        <div class="path"><span>Perizinan</span><span>Kemitraan</span><span>Kontrak jual beli</span></div>
+      </div>
+      <div class="card persona mentor" style="grid-column: auto">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="8" r="4"></circle><path d="M4 21c0-3.9 3.1-7 7-7 1.6 0 3 .5 4.2 1.4"></path><path d="m18.5 14 1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3z"></path></svg></div>
+        <h3>Praktisi berpengalaman</h3>
+        <p>Geologis, mine planner, ahli K3, legal, atau trader: bagikan ilmu lewat forum, kelas, dan mentoring, dengan bagi hasil 70–80% dari tarif sesi.</p>
+        <div style="flex: 1"></div>
+        <a href="#mentor" class="btn btn-primary" style="margin-top: 22px; align-self: flex-start">Daftar Jadi Mentor</a>
+      </div>
+      <div class="card" style="display: flex; flex-direction: column; justify-content: center; border-style: dashed; background: transparent; box-shadow: none">
+        <p style="color: #1B2422; font-weight: 600; margin-top: 0">Belum yakin jalur mana yang cocok?</p>
+        <p>Kuis penempatan akan memilihkannya untukmu dalam beberapa menit.</p>
+        <a href="#daftar" style="font-weight: 700; margin-top: 12px; text-decoration: none">Ikut kuis penempatan →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. MANFAAT -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Manfaat untukmu</p>
+    <h2 class="h2">Yang kamu bawa pulang setelah belajar di sini.</h2>
+    <div class="ben-grid">
+      <ul class="ben-list">
+        <li class="ben"><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span><b>Paham alur tambang secara utuh</b>, dari eksplorasi sampai komoditas dijual.</span></li>
+        <li class="ben"><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span><b>Siap magang dan rekrutmen</b> dengan bekal studi kasus dan istilah lapangan.</span></li>
+        <li class="ben"><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span><b>Bisa membaca laporan cadangan dan harga acuan</b> seperti HBA dan HMA.</span></li>
+        <li class="ben"><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span><b>Punya jaringan praktisi</b> untuk bertanya, mencari mentor, dan membuka peluang.</span></li>
+        <li class="ben"><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span><b>Belajar fleksibel di sela roster kerja</b>, online maupun offline.</span></li>
+        <li class="ben" style="border-bottom: none"><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span><span><b>Sertifikat untuk CV</b>, lengkap dengan kode verifikasi.</span></li>
+      </ul>
+      <div class="ben-quote">
+        <figure class="quote" style="margin: 0">
+          <span class="ph-label">Contoh testimoni</span>
+          <blockquote>"Dulu saya cuma tahu bagian alat berat. Setelah ikut jalur supervisor, saya jadi paham kenapa rencana produksi dan RKAB saling terkait."</blockquote>
+          <figcaption style="display: flex; gap: 12px; align-items: center; margin-top: 22px">
+            <div class="avatar" style="width: 44px; height: 44px; background: #E4EDEA; color: #1F4D45; font-size: 14px">[NA]</div>
+            <div><div style="font-weight: 700">[Nama Anggota]</div><div class="muted" style="font-size: 14px">[Peran, lokasi site]</div></div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. HARGA -->
+<section class="sec alt" id="harga" style="scroll-margin-top: 68px">
+  <div class="wrap">
+    <div style="text-align: center; display: flex; flex-direction: column; align-items: center">
+      <p class="eyebrow">Paket harga</p>
+      <h2 class="h2">Mulai gratis. Upgrade saat kamu siap belajar lebih dalam.</h2>
+      <div class="toggle" role="group" aria-label="Tampilkan harga">
+        <button type="button" class="{{ monthlyCls }}" aria-pressed="{{ monthlyPressed }}" onClick="{{ setMonthly }}">Bulanan</button>
+        <button type="button" class="{{ yearlyCls }}" aria-pressed="{{ yearlyPressed }}" onClick="{{ setYearly }}">Tahunan</button>
+      </div>
+    </div>
+    <div class="g4" style="margin-top: 44px">
+      <div class="card price">
+        <h3>Gratis</h3>
+        <div class="amt">Rp0</div>
+        <div class="bill">Selamanya, tanpa kartu kredit</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Modul 0 lengkap</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Pelajaran pertama tiap modul</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Forum tanya-jawab</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Webinar live</li>
+        </ul>
+        <a href="#daftar" class="btn btn-outline">Daftar Gratis</a>
+      </div>
+      <div class="card price">
+        <h3>Premium Bulanan</h3>
+        <div class="amt">{{ pB }}<small>{{ sB }}</small></div>
+        <div class="bill">{{ nB }}</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Semua modul dan level</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Rekaman webinar</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Mode offline</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Sertifikat digital</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Perpustakaan dokumen</li>
+        </ul>
+        <a href="#daftar" class="btn btn-green">Coba Gratis 7 Hari</a>
+      </div>
+      <div class="card price best">
+        <span class="best-tag">PALING HEMAT</span>
+        <h3>Premium Tahunan</h3>
+        <div class="amt">{{ pT }}<small>{{ sT }}</small></div>
+        <div class="bill">{{ nT }}</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Semua isi Premium</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Hemat sekitar 27%</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>1 sesi review CV gratis</li>
+        </ul>
+        <a href="#daftar" class="btn btn-primary">Coba Gratis 7 Hari</a>
+      </div>
+      <div class="card price">
+        <h3>Premium Pelajar</h3>
+        <div class="amt">{{ pP }}<small>{{ sP }}</small></div>
+        <div class="bill">{{ nP }}</div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Semua isi Premium</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Verifikasi kartu mahasiswa aktif</li>
+        </ul>
+        <a href="#daftar" class="btn btn-green">Coba Gratis 7 Hari</a>
+      </div>
+    </div>
+    <div class="price-foot">
+      <span class="muted"><b style="color: #1B2422">Uji gratis 7 hari</b> untuk semua paket Premium. Berhenti kapan saja.</span>
+      <a href="#kontak" style="font-weight: 600">Butuh paket untuk perusahaan atau kampus? Hubungi kami</a>
+    </div>
+  </div>
+</section>
+
+<!-- 12. FAQ -->
+<section class="sec" id="faq" style="scroll-margin-top: 68px">
+  <div class="wrap faq-grid">
+    <div class="faq-head">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Pertanyaan yang sering ditanyakan.</h2>
+      <p class="lead" style="font-size: 17px">Tidak menemukan jawabannya? Tanyakan langsung di forum komunitas.</p>
+    </div>
+    <div class="faq-list">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+        <div class="acc">
+          <button type="button" class="acc-btn {{ f.cls }}" aria-expanded="{{ f.expanded }}" onClick="{{ f.toggle }}">
+            <span>{{ f.q }}</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div class="acc-body">{{ f.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+      <div class="disclaimer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6865" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex: none; margin-top: 2px"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+        <span>Seluruh konten Komunitas Tambang bersifat edukasi, bukan nasihat hukum, teknis yang mengikat, atau rekomendasi investasi.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. CTA -->
+<section class="cta">
+  <svg class="contour" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#FFFFFF" stroke-opacity="0.08" aria-hidden="true">
+    <g transform="translate(260 120)">
+      <path vector-effect="non-scaling-stroke" transform="scale(0.6)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.2) rotate(10)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.9) rotate(18)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(2.7) rotate(25)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+    </g>
+    <g transform="translate(1220 430)">
+      <path vector-effect="non-scaling-stroke" transform="scale(0.8) rotate(-30)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(1.5) rotate(-22)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(2.3) rotate(-15)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+      <path vector-effect="non-scaling-stroke" transform="scale(3.2) rotate(-9)" d="M0-120C70-118 130-80 140-20 150 40 110 100 40 118-30 136-110 110-135 50-160-10-120-80-60-108-40-116-20-120 0-120Z"></path>
+    </g>
+  </svg>
+  <div class="wrap" style="position: relative">
+    <p class="mono" style="font-size: 12.5px; letter-spacing: .1em; color: #F2C08F; font-weight: 600; margin-bottom: 16px">M0 GRATIS · TANPA KARTU KREDIT</p>
+    <h2>Siap paham tambang dari eksplorasi sampai pelabuhan?</h2>
+    <p>Mulai dari Modul 0 hari ini, lalu lanjutkan jalur belajarmu bersama praktisi.</p>
+    <div class="cta-btns">
+      <a href="#daftar" class="btn btn-primary" style="min-height: 52px; padding: 0 28px; font-size: 17px">Daftar Gratis Sekarang</a>
+      <a href="#webinar" class="btn btn-light" style="min-height: 52px; padding: 0 28px; font-size: 17px">Gabung Webinar Berikutnya</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 14. FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a href="#top" class="logo" style="color: #FFFFFF">
+          <span class="logo-mark" style="background: rgba(255,255,255,.1)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 8 12 13l9.5-5L12 3Z"></path><path d="m2.5 12.5 9.5 5 9.5-5" stroke="#F2C08F"></path><path d="m2.5 17 9.5 5 9.5-5"></path></svg>
+          </span>
+          <span>Komunitas Tambang</span>
+        </a>
+        <p style="margin-top: 16px; max-width: 340px">Platform belajar berbasis komunitas untuk memahami rantai nilai pertambangan Indonesia, dari eksplorasi sampai penjualan komoditas, bersama praktisinya.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Produk</h4>
+        <ul><li><a href="#kurikulum">Kurikulum</a></li><li><a href="#webinar">Webinar</a></li><li><a href="#harga">Harga</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Komunitas</h4>
+        <ul><li><a href="#forum">Forum</a></li><li><a href="#mentor">Jadi Mentor</a></li><li><a href="#ambassador">Ambassador Kampus</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Perusahaan</h4>
+        <ul><li><a href="#tentang">Tentang</a></li><li><a href="#kontak">Kemitraan B2B</a></li><li><a href="#kontak">Kontak</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul><li><a href="#syarat">Syarat &amp; Ketentuan</a></li><li><a href="#privasi">Kebijakan Privasi</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Komunitas Tambang. [EMAIL KONTAK]</span>
+      <span>Konten bersifat edukasi, bukan nasihat hukum atau rekomendasi investasi.</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":10400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { nav: false, cur: 1, tab: 0, bill: 'bulanan', faq: 0 };
+  }
+  renderVals() {
+    var s = this.state;
+    var self = this;
+    var mods = [
+      { code: 'M0', name: 'Pengantar', full: 'Pengantar Industri Tambang', isFree: true,
+        topics: ['Rantai nilai tambang dari hulu ke hilir', 'Jenis komoditas: mineral logam, bukan logam, batuan, batu bara', 'Peta tambang Indonesia', 'Peran pemerintah dan BUMN', 'Pilihan karier di industri tambang'],
+        practice: 'Tur virtual alur tambang dari eksplorasi sampai pelabuhan.',
+        output: 'Peta pemahaman rantai nilai' },
+      { code: 'M1', name: 'Eksplorasi', full: 'Eksplorasi',
+        topics: ['Geologi dasar dan genesa endapan', 'Pemetaan geologi, geofisika, dan geokimia', 'Pengeboran dan logging inti bor', 'Sampling dan QA/QC', 'Estimasi sumber daya dan cadangan (standar KCMI/JORC)'],
+        practice: 'Membaca data bor dan latihan estimasi tonase serta kadar sederhana.',
+        output: 'Laporan eksplorasi mini' },
+      { code: 'M2', name: 'Perizinan & Regulasi', full: 'Perizinan & Regulasi',
+        topics: ['UU Minerba dan aturan turunannya', 'Jenis izin: IUP, IUPK, IPR, SIPB', 'AMDAL dan persetujuan lingkungan', 'RKAB dan jaminan reklamasi', 'PNBP, royalti, dan kewajiban hilirisasi'],
+        practice: 'Simulasi alur pengurusan izin dan membedah contoh RKAB.',
+        output: 'Checklist perizinan' },
+      { code: 'M3', name: 'Penambangan', full: 'Eksploitasi dan Penambangan',
+        topics: ['Studi kelayakan dan perencanaan tambang', 'Tambang terbuka vs bawah tanah', 'Stripping ratio, pemboran, dan peledakan', 'Alat berat dan produktivitas', 'K3 tambang dan SMKP'],
+        practice: 'Menghitung stripping ratio dan kebutuhan alat, serta analisis insiden K3.',
+        output: 'Rencana produksi sederhana' },
+      { code: 'M4', name: 'Pengolahan & Pemurnian', full: 'Pengolahan & Pemurnian',
+        topics: ['Kominusi dan konsentrasi', 'Washing plant batu bara', 'Smelter nikel: RKEF dan HPAL', 'Pengolahan emas', 'Spesifikasi produk: kalori, kadar, moisture'],
+        practice: 'Membaca certificate of analysis dan membandingkan teknologi smelter.',
+        output: 'Ringkasan alur proses komoditas pilihan' },
+      { code: 'M5', name: 'Lingkungan & Reklamasi', full: 'Lingkungan, Reklamasi, dan Pascatambang',
+        topics: ['Pengelolaan air asam tambang dan limbah', 'Revegetasi lahan bekas tambang', 'Rencana reklamasi dan pascatambang', 'Hubungan masyarakat dan PPM', 'Prinsip ESG'],
+        practice: 'Studi kasus reklamasi yang berhasil dan yang gagal.',
+        output: 'Rencana reklamasi mini' },
+      { code: 'M6', name: 'Logistik & Penjualan', full: 'Logistik dan Penjualan Komoditas',
+        topics: ['Rantai pasok mine-to-port, tongkang, dan pengapalan', 'Surveyor independen', 'Harga acuan HBA/HMA dan indeks global', 'Incoterms (FOB, CIF) dan kontrak jual beli', 'Ekspor, DMO, dan analisis pasar komoditas'],
+        practice: 'Simulasi perhitungan harga jual FOB dan membedah contoh kontrak jual beli.',
+        output: 'Kalkulasi harga dan draf term sheet' }
+    ];
+    var modules = mods.map(function (m, i) {
+      var on = s.cur === i;
+      return Object.assign({}, m, {
+        levels: 'Dasar · Menengah · Lanjut',
+        selected: on,
+        cls: on ? 'on' : '',
+        ariaSel: on ? 'true' : 'false',
+        pick: function () { if (self.state.cur !== i) self.setState({ cur: i }); }
+      });
+    });
+
+    var tabLabels = ['Dashboard Progres', 'Pemutar Materi', 'Forum Tanya-Jawab', 'Sertifikat'];
+    var tabs = tabLabels.map(function (label, i) {
+      return { label: label, cls: s.tab === i ? 'on' : '', ariaSel: s.tab === i ? 'true' : 'false', pick: function () { self.setState({ tab: i }); } };
+    });
+    var tabCls = [0, 1, 2, 3].map(function (i) { return s.tab === i ? 'on' : ''; });
+
+    var monthly = s.bill === 'bulanan';
+    var price = monthly ? {
+      pB: 'Rp79.000', sB: '/bulan', nB: 'Ditagih bulanan, berhenti kapan saja',
+      pT: 'Rp57.500', sT: '/bulan', nT: 'Ditagih Rp690.000 per tahun',
+      pP: 'Rp39.000', sP: '/bulan', nP: 'Ditagih bulanan'
+    } : {
+      pB: 'Rp948.000', sB: '/tahun', nB: 'Setara 12 x Rp79.000',
+      pT: 'Rp690.000', sT: '/tahun', nT: 'Hemat sekitar 27% dibanding bulanan',
+      pP: 'Rp468.000', sP: '/tahun', nP: 'Setara 12 x Rp39.000'
+    };
+
+    var faqData = [
+      ['Apakah saya perlu latar belakang teknik untuk ikut?', 'Tidak. Modul 0 dirancang untuk pemula dari latar belakang apa pun, dan istilah teknis selalu dijelaskan singkat. Kuis penempatan akan menyesuaikan jalur belajar dengan level kamu.'],
+      ['Siapa yang mengajar dan menjawab di forum?', 'Materi disusun dan direview praktisi berpengalaman seperti geologis, mine planner, ahli K3, dan trader komoditas, lalu diedit tim kurikulum. Di forum, jawaban dari mentor yang sudah diverifikasi ditandai badge praktisi.'],
+      ['Apakah materinya bisa ditonton offline?', 'Bisa, untuk anggota Premium. Video dan PDF dapat diunduh lewat aplikasi, lalu progres belajarmu tersinkron otomatis saat kembali online.'],
+      ['Apakah sertifikatnya setara sertifikasi BNSP atau POP/POM?', 'Belum. Sertifikat Komunitas Tambang adalah sertifikat platform dengan kode verifikasi, yang menunjukkan kamu menyelesaikan jalur belajar dan lulus ujiannya. Sertifikat ini bukan sertifikasi kompetensi resmi seperti BNSP atau POP/POM.'],
+      ['Seberapa sering materi regulasi diperbarui?', 'Materi regulasi ditinjau ulang setiap 6 bulan, atau lebih cepat jika ada aturan baru. Setiap pelajaran mencantumkan tanggal pembaruan terakhir.'],
+      ['Bagaimana cara berhenti berlangganan?', 'Buka Pengaturan, pilih Langganan, lalu Berhenti Berlangganan. Akses Premium tetap aktif sampai akhir periode yang sudah dibayar.'],
+      ['Bagaimana cara mendaftar menjadi mentor?', 'Klik Daftar Jadi Mentor, unggah CV dan bukti pengalaman, lalu ikuti verifikasi dan wawancara singkat dengan tim kurasi. Mentor mendapat bagi hasil 70–80% dari tarif sesi.'],
+      ['Apakah ada paket untuk perusahaan atau kampus?', 'Ada. Kami menyediakan lisensi per kursi, laporan progres, dan kurikulum yang bisa disesuaikan. Hubungi tim kemitraan lewat tautan di bagian harga.']
+    ];
+    var faqs = faqData.map(function (f, i) {
+      var open = s.faq === i;
+      return { q: f[0], a: f[1], open: open, cls: open ? 'open' : '', expanded: open ? 'true' : 'false',
+        toggle: function () { self.setState({ faq: self.state.faq === i ? -1 : i }); } };
+    });
+
+    return Object.assign({
+      navOpen: s.nav,
+      navClosed: !s.nav,
+      navExpanded: s.nav ? 'true' : 'false',
+      burgerLabel: s.nav ? 'Tutup menu' : 'Buka menu',
+      toggleNav: function () { self.setState({ nav: !self.state.nav }); },
+      closeNav: function () { self.setState({ nav: false }); },
+      modules: modules,
+      cur: modules[s.cur],
+      tabs: tabs,
+      tabCls: tabCls,
+      tab0: s.tab === 0, tab1: s.tab === 1, tab2: s.tab === 2, tab3: s.tab === 3,
+      monthlyCls: monthly ? 'on' : '',
+      yearlyCls: monthly ? '' : 'on',
+      monthlyPressed: monthly ? 'true' : 'false',
+      yearlyPressed: monthly ? 'false' : 'true',
+      setMonthly: function () { self.setState({ bill: 'bulanan' }); },
+      setYearly: function () { self.setState({ bill: 'tahunan' }); },
+      faqs: faqs
+    }, price);
+  }
+}
+</script>
+</body>
+</html>
